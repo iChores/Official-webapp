@@ -7,6 +7,14 @@ a{
     color: white;
     background-color: black;
 }
+button{
+    padding: 15px 25px;
+    color: white;
+    background-color: black;
+    border:none;
+    outline:none;
+}
+
 `
 export const SecondaryButton = styled.div`
 a{
