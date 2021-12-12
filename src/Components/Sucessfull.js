@@ -2,9 +2,13 @@ import { Link } from "react-router-dom";
 import { PrimaryButton } from "../Styles/Buttons.style";
 import SucessWrapper from "../Styles/Sucess.style";
 
-function Sucess() {
+function Sucess({showSucess}) {
 	return (
-		<SucessWrapper>
+		<SucessWrapper
+			style={{
+				display:showSucess?"flex":"none"
+			}}
+		>
 			<div className="container">
 				<svg
 					xmlns="http://www.w3.org/2000/svg"

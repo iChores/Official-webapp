@@ -14,6 +14,8 @@ function RegisterForm({
 	regionName,
 	LGA,
 	Email,
+	showSucess,
+	setShowSucess,
 	Password,
 	confirmPassword,
 	setConfirmPassword,
@@ -77,34 +79,58 @@ function RegisterForm({
 		} else if (Password !== confirmPassword) {
 			setErrorLog([...errorLog, "passwords doesn't match"]);
 		} else if (Password.length < 5) {
-			setErrorLog([...errorLog,"password length too short"])
-		}else {
+			setErrorLog([...errorLog, "password length too short"]);
+		} else {
 			axios({
 				method: "post",
 				url: baseUrl,
 				data: {
-					firstName,
-					lastName,
-					regionName,
-					stateName,
-					streetName,
+					first_name: firstName,
+					last_name: lastName,
+					region: regionName,
+					state: stateName,
+					street: streetName,
 					phone,
-					Email,
-					Password,
+					email: Email,
+					password: Password,
 				},
 				headers: {
 					"Content-Type": "text/plain;charset=utf-8",
 				},
-			}).then(res => {
-				console.log(res);
-			}).catch(err => {
-				console.log(err);
 			})
+				.then((res) => {
+					console.log("this is response", res.status);
+					console.log("this is response", res.data);
+					console.log("this is response", res.data.status);
+					if (res.data === "user already exist") {
+						setErrorLog([]);
+						setErrorLog([...errorLog, res.data]);
+					} else {
+						setShowSucess(true);
+					}
+				})
+				.catch((err) => {
+					console.log(err.response);
+					console.log("this nah error code", err.response.status);
+					console.log("this nah error code", err.response.data);
+					if (err.response.data) {
+						setErrorLog([]);
+						setErrorLog([
+							...errorLog,
+							"Let your Password contain uppercase alphabets and numbers",
+						]);
+					}
+				});
 		}
 	};
 
 	return (
-		<RegisterWrapper className="register-form">
+		<RegisterWrapper
+			className="register-form"
+			style={{
+				display: showSucess ? "none" : "flex",
+			}}
+		>
 			<div className="form">
 				<h1 className="form-heading">{show ? "Get started" : "Finish up"}</h1>
 				{errorLog.map((item) => {

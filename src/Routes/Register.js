@@ -10,6 +10,7 @@ function Register() {
     const [regionName, setRegionName] = useState("");
     const [phone, setPhone] = useState("");
     const [Email, setEmail] = useState("");
+    const [showSucess, setShowSucess] = useState(false)
     const [Password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
 
@@ -100,11 +101,16 @@ function Register() {
                 setStreetName={setStreetName}
                 setRegionName={setRegionName}
                 setEmail={setEmail}
+                showSucess={showSucess}
+                setShowSucess ={setShowSucess}
                 setPassword={setPassword}
                 setConfirmPassword={setConfirmPassword}
                 LGA = {LGA}
             />
-            <Sucess/>
+            <Sucess
+                showSucess={showSucess}
+                setShowSucess={setShowSucess}
+            />
 
         </>
     )
