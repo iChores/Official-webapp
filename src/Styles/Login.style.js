@@ -18,6 +18,7 @@ img{
     position: absolute;
     top: -20px;
     left: 0;
+    pointer-events:none;
     @media (max-width:600px){
         display: none;
     }
@@ -28,6 +29,7 @@ img{
     border-radius: 30px;
     display: flex;
     flex-direction: column;
+    z-index:20;
     @media (max-width:600px){
         padding: 40px;
         height: fit-content;

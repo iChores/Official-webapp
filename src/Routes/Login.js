@@ -2,12 +2,23 @@ import { Link } from "react-router-dom";
 import LoginWrapper from "../Styles/Login.style";
 import JoinImg from "../Assets/JoinImg.png";
 import { useState } from "react";
+import { useNavigate, Navigate } from "react-router-dom";
+
 import axios from "axios";
 
-function Login({ token, setToken }) {
+function Login({ user, setIsLoggedIn, isLoggedIn, setUser }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errLog, setErrLog] = useState([]);
+	if (sessionStorage.Token) {
+		setIsLoggedIn(true);
+		return <Navigate to={"/dashboard"} />;
+	} else {
+		setIsLoggedIn(false);
+	}
+
+	console.log("first login check", isLoggedIn);
+
 	function loginHandler() {
 		if (email === "") {
 			setErrLog([...errLog, "email feild is empty"]);
@@ -26,17 +37,18 @@ function Login({ token, setToken }) {
 				},
 			})
 				.then((res) => {
-					console.log("this is response", res.status);
-					console.log("this is response", res.data);
+					// console.log("this is response", res.status);
+					// console.log("this is response", res.data);
 					if (res.status === 200) {
-						setToken(res.data.access_token);
-						sessionStorage.setItem("token", res.data.access_token);
-						console.log("this is state token", token);
-						console.log(
-							"this is session storage token",
-							sessionStorage.getItem("token")
-						);
-						console.log("this is  access token", res.data.access_token);
+						const accesToken = res.data.access_token;
+						sessionStorage.setItem("Token", accesToken);
+						console.log("this is access token", accesToken);
+						setUser({ ...res.data.user });
+						console.log("this is user data", user);
+						console.log("second login check", isLoggedIn);
+						return <Navigate to={"/dashboard"} />;
+
+						// console.log("this is user data",res.data.user);
 					}
 				})
 				.catch((err) => {
@@ -46,6 +58,7 @@ function Login({ token, setToken }) {
 				});
 		}
 	}
+
 	return (
 		<LoginWrapper>
 			<img src={JoinImg} alt="" />

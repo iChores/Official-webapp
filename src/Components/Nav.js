@@ -15,7 +15,7 @@ function Navbar() {
                 <Link to="/home">How it works</Link>
                 <Link to="/home">FAQ</Link>
                 <PrimaryButton>
-                    <Link to="/subscribe">Get started</Link>
+                    <Link to="/dashboard">Get started</Link>
                 </PrimaryButton>
             </div>
             <button className="hamburger-button">
