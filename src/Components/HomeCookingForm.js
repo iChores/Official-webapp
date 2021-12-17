@@ -1,9 +1,13 @@
 import { PrimaryButton } from "../Styles/Buttons.style";
 import CookingFormWrapper from "../Styles/HomeCookingForm.style";
 import Pan from "../Assets/Pan.png";
-function HomeCookingForm() {
+function HomeCookingForm({chooseShow}) {
 	return (
-		<CookingFormWrapper>
+		<CookingFormWrapper
+			style={{
+				display: chooseShow ? "none" : "flex",
+			}}
+		>
 			<div className="form-wrapper">
 				<div className="header">
 					<img src={Pan} alt="" />
@@ -45,7 +49,11 @@ function HomeCookingForm() {
 						</select>
 					</div>
 					<div className="container">
-						<h4>Time</h4>
+						<h4>From</h4>
+						<input type="time" name="Time" />
+					</div>
+					<div className="container">
+						<h4>To</h4>
 						<input type="time" name="Time" />
 					</div>
 					<button>Add schedule</button>

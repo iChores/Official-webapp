@@ -2,7 +2,7 @@ import { useState } from "react";
 import ChooseService from "../Components/ChooseService";
 import HomeCookingForm from "../Components/HomeCookingForm";
 
-function Subscribe() {
+function Subscribe({user}) {
 	const [homeCooking, setHomeCooking] = useState(false);
 	const [homeCleaning, setHomeCleaning] = useState(false);
 	const [both, setBoth] = useState(false);
@@ -21,12 +21,13 @@ function Subscribe() {
 				setHomeCleaning={setHomeCleaning}
 				setHomeCooking={setHomeCooking}
 				setBoth={setBoth}
+				user={user}
 				chooseShow={chooseShow}
 				chooseSetShow={chooseSetShow}
 				subscriptionData={subscriptionData}
 				setSubscriptionData={setSubscriptionData}
 			/>
-			<HomeCookingForm></HomeCookingForm>
+			<HomeCookingForm chooseShow={chooseShow}/>
 
 		</>
 	);

@@ -10,53 +10,49 @@ function Login({ user, setIsLoggedIn, isLoggedIn, setUser }) {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [errLog, setErrLog] = useState([]);
-	if (sessionStorage.Token) {
-		setIsLoggedIn(true);
-		return <Navigate to={"/dashboard"} />;
-	} else {
-		setIsLoggedIn(false);
-	}
 
 	console.log("first login check", isLoggedIn);
 
+	async function fetchData() {
+		const response = await axios({
+			method: "post",
+			url: "https://ichores.herokuapp.com/auth/login_email",
+			data: {
+				password,
+				email,
+			},
+			headers: {
+				"Content-Type": "text/plain;charset=utf-8",
+			},
+		});
+		const Data = await response.data;
+		const User = await Data.user;
+		const accessToken = await Data.access_token;
+		if (User) {
+			setUser({ ...User });
+			sessionStorage.setItem("Token", accessToken);
+			setIsLoggedIn(true);
+		}
+		if (isLoggedIn) {
+			console.log("login sucessfull");
+			return <Navigate to={"/dashboard"} />;
+		}
+	}
 	function loginHandler() {
 		if (email === "") {
 			setErrLog([...errLog, "email feild is empty"]);
 		} else if (password === "") {
 			setErrLog([...errLog, "Password must not be empty"]);
 		} else {
-			axios({
-				method: "post",
-				url: "https://ichores.herokuapp.com/auth/login_email",
-				data: {
-					password,
-					email,
-				},
-				headers: {
-					"Content-Type": "text/plain;charset=utf-8",
-				},
-			})
-				.then((res) => {
-					// console.log("this is response", res.status);
-					// console.log("this is response", res.data);
-					if (res.status === 200) {
-						const accesToken = res.data.access_token;
-						sessionStorage.setItem("Token", accesToken);
-						console.log("this is access token", accesToken);
-						setUser({ ...res.data.user });
-						console.log("this is user data", user);
-						console.log("second login check", isLoggedIn);
-						return <Navigate to={"/dashboard"} />;
-
-						// console.log("this is user data",res.data.user);
-					}
-				})
-				.catch((err) => {
-					console.log(err.response);
-					console.log("this nah error code", err.response.status);
-					console.log("this nah error code", err.response.data);
-				});
+			fetchData();
 		}
+	}
+
+	if (sessionStorage.Token) {
+		setIsLoggedIn(true);
+		return <Navigate to={"/dashboard"} />;
+	} else {
+		setIsLoggedIn(false);
 	}
 
 	return (

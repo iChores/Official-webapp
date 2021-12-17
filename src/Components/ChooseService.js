@@ -12,7 +12,8 @@ function ChooseService({
 	setHomeCooking,
 	setHomeCleaning,
 	chooseShow,
-	chooseSetShow
+	chooseSetShow,
+	user
 }) {
 	function homecookingHandler() {
 		setHomeCleaning(false);
@@ -28,6 +29,7 @@ function ChooseService({
 		setBoth(true);
 		setSubscriptionData({ ...subscriptionData, subscriptionType:"both" });
 	}
+	console.log("logging user from home cooking",user);
 	const subscriptionType = (function () {
 		if (homeCleaning) {
 			return "home cleaning";
@@ -44,10 +46,11 @@ function ChooseService({
 	return (
 		<ServiceWrapper
 			style={{
-				display: chooseShow?"flex":"none"
-			} }
+				display: chooseShow ? "flex" : "none",
+			}}
 		>
 			<div className="container">
+				<h1>{user ? `welcome back, ${user.first_name}` : "hello dear"}</h1>
 				<h1>select a type of service</h1>
 				<p>Choose what best works for you</p>
 				<div className="options-wrapper">

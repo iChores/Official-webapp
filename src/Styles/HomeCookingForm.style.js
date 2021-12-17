@@ -83,6 +83,7 @@ const CookingFormWrapper =
 		}
 		.continue {
 			margin-top: 20px;
+			cursor:pointer;
 		}
 	}
 `;

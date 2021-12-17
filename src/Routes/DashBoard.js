@@ -1,11 +1,9 @@
 import Subscribe from "./subscribe";
 
-function Dashboard() {
-	return (
-		<>
-			<Subscribe />
-		</>
-	);
+function Dashboard({user}) {
+	return (<>
+		<Subscribe user={user} />
+	</>);
 }
 
 export default Dashboard;

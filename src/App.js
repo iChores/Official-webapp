@@ -9,7 +9,7 @@ import { useState } from "react";
 import Dashboard from "./Routes/DashBoard";
 
 function App() {
-	const [user, setUser] = useState(["hii"])
+	const [user, setUser] = useState(false)
 	const [isLoggedIn, setIsLoggedIn] = useState(false);
 		return (
 			<div className="App">
@@ -28,7 +28,7 @@ function App() {
 							/>
 						}
 					/>
-					<Route path="/dashboard" element={<Dashboard/>} />
+					<Route path="/dashboard" element={<Dashboard user={user} isLoggedIn={isLoggedIn}/>} />
 				</Routes>
 			</div>
 		);
