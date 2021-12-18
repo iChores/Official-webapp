@@ -1,7 +1,8 @@
 import { PrimaryButton } from "../Styles/Buttons.style";
 import CookingFormWrapper from "../Styles/HomeCookingForm.style";
 import Pan from "../Assets/Pan.png";
-function HomeCookingForm({chooseShow}) {
+import SetSchedule from "./SetSchedule";
+function HomeCookingForm({ chooseShow }) {
 	return (
 		<CookingFormWrapper
 			style={{
@@ -36,28 +37,7 @@ function HomeCookingForm({chooseShow}) {
 				<p>
 					The day and time chosen iterates over the course of the subscription
 				</p>
-				<div className="service-day-wrapper">
-					<div className="container">
-						<h4>Day</h4>
-						<select name="" id="">
-							<option value="Monday">Moday</option>
-							<option value="Tuesday">Tuesday</option>
-							<option value="Wedsday">Wedsday</option>
-							<option value="Thursday">Thursday</option>
-							<option value="Friday">Friday</option>
-							<option value="Saturday">Saturday</option>
-						</select>
-					</div>
-					<div className="container">
-						<h4>From</h4>
-						<input type="time" name="Time" />
-					</div>
-					<div className="container">
-						<h4>To</h4>
-						<input type="time" name="Time" />
-					</div>
-					<button>Add schedule</button>
-				</div>
+				<SetSchedule/>
 				<PrimaryButton>
 					<button className="continue">Continue</button>
 				</PrimaryButton>

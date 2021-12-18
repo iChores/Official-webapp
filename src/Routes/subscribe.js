@@ -6,7 +6,7 @@ function Subscribe({user}) {
 	const [homeCooking, setHomeCooking] = useState(false);
 	const [homeCleaning, setHomeCleaning] = useState(false);
 	const [both, setBoth] = useState(false);
-	const [chooseShow, chooseSetShow] = useState(true);
+	const [chooseShow, chooseSetShow] = useState(false);
 	const [subscriptionData, setSubscriptionData] = useState({
 		subscriptionType: "",
 		subscriptionDetails: "",

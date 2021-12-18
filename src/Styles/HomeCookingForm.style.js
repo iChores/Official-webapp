@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
-const CookingFormWrapper =
-	styled.div`
+const CookingFormWrapper = styled.div`
 	display: flex;
 	justify-content: center;
 	align-items: center;
@@ -62,28 +61,31 @@ const CookingFormWrapper =
 		}
 		.service-day-wrapper {
 			display: flex;
-            align-items:center;
-            margin-top:10px;
+			align-items: center;
+			margin-top: 10px;
 			.container {
 				margin-left: 30px;
-				:nth-child(1){
-                    margin-left:0;
-                }
+				select {
+					padding: 5px;
+					font-weight: bold;
+				}
+				:nth-child(1) {
+					margin-left: 0;
+				}
 			}
-            button{
-                width:fit-content;
-                height:fit-content;
-                margin-top:20px;
-                margin-left:20px;
-                padding:5px 10px;
-                border:none;
-                color:white;
-                background-color:black;
-            }
+			button {
+				width: fit-content;
+				height: fit-content;
+				margin-left: 20px;
+				padding: 5px 10px;
+				border: none;
+				color: white;
+				background-color: black;
+			}
 		}
 		.continue {
 			margin-top: 20px;
-			cursor:pointer;
+			cursor: pointer;
 		}
 	}
 `;
