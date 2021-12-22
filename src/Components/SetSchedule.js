@@ -10,6 +10,7 @@ function SetSchedule() {
 	const [endTime, setEndTime] = useState("");
 	const [weekOne, setWeekOne] = useState([]);
 	const [weekTwo, setWeekTwo] = useState(false);
+	const [pricelist, setPrice] = useState([]);
 	const [weekFour, setWeekFour] = useState(false);
 	let dailySchedule = [];
 	let weeklySchedule = [];
@@ -23,6 +24,8 @@ function SetSchedule() {
 		} else {
 			setDays([...days, day]);
 			available = checkAvailable();
+			console.log(calculatePrice());
+
 			if (weekOne.length <= 5 && !available) {
 				setErrorLog([{ err: "", type: true }]);
 				dailySchedule = [...dailySchedule, list];
@@ -36,6 +39,16 @@ function SetSchedule() {
 				setWeekTwo([weekOne]);
 				console.log("Add new week");
 			}
+		}
+	}
+
+	function calculatePrice() {
+		if (weekOne.length > 1) {
+			weekOne.reduce(function (a, b) {
+				return a.Price + b.Price;
+			});
+		} else {
+			return "nothing in list";
 		}
 	}
 
@@ -56,7 +69,14 @@ function SetSchedule() {
 		const CheckDay = checkDay(day);
 		const startTimeNumber = 12 - extractTimeToNumber(startTime);
 		const StartTime = extractTimeToNumber(startTime);
-		console.log("surwe", endTimeNumber, startTimeNumber, StartTime, day);
+		console.log(
+			"surwe",
+			endTimeNumber,
+			startTimeNumber,
+			StartTime,
+			day,
+			"pricelist:"
+		);
 
 		if (startTimeNumber > 6 && endTimeNumber > StartTime && CheckDay) {
 			const Price = Math.ceil((endTimeNumber - StartTime) * 841.15);
@@ -70,6 +90,7 @@ function SetSchedule() {
 			return "Not allowed";
 		} else if (startTimeNumber <= 6 && endTimeNumber > StartTime) {
 			const Price = Math.ceil((endTimeNumber - StartTime) * 841.15);
+
 			const collection = { day, startTime, endTime, Price };
 			return collection;
 		} else if (startTimeNumber > 6 && CheckDay) {
