@@ -2,7 +2,39 @@ import { PrimaryButton } from "../Styles/Buttons.style";
 import CookingFormWrapper from "../Styles/HomeCookingForm.style";
 import Pan from "../Assets/Pan.png";
 import SetSchedule from "./SetSchedule";
+import { useState } from "react/cjs/react.development";
 function HomeCookingForm({ chooseShow }) {
+	const [weekOnePrice, setWeekOnePrice] = useState([0]);
+	const [weekTwoPrice, setWeekTwoPrice] = useState([0]);
+	const [weekThirdPrice, setWeekThirdPrice] = useState([0]);
+	const [weekFourthPrice, setWeekFourthPrice] = useState([0]);
+	const [total, setTotal] = useState("0.00");
+	function calculate() {
+		const firstWeek = weekOnePrice.reduce((a, b) => {
+			return a + b;
+		});
+		const secondWeek = weekTwoPrice.reduce((a, b) => {
+			return a + b;
+		});
+		const thirdWeek = weekThirdPrice.reduce((a, b) => {
+			return a + b;
+		});
+		const fourthWeek = weekFourthPrice.reduce((a, b) => {
+			return a + b;
+		});
+		const add = (firstWeek + secondWeek + thirdWeek + fourthWeek)
+			.toFixed(2)
+			.replace(/\d(?=(\d{3})+\.)/g, "$&,");
+		setTotal(add)
+
+		console.log("This is first week price:", firstWeek);
+		console.log("This is second week price:", secondWeek);
+		console.log("This is third week price:", thirdWeek);
+		console.log("This is fourth week price:", fourthWeek);
+		console.log("This is total week price:", total);
+		console.log("This is total week price converted:", add);
+	}
+
 	return (
 		<CookingFormWrapper
 			style={{
@@ -37,10 +69,39 @@ function HomeCookingForm({ chooseShow }) {
 				<p>
 					The day and time chosen iterates over the course of the subscription
 				</p>
-				<SetSchedule/>
-				<PrimaryButton>
-					<button className="continue">Continue</button>
-				</PrimaryButton>
+				<SetSchedule
+					Prices={weekOnePrice}
+					setPrice={setWeekOnePrice}
+					Title={"Week one"}
+				/>
+				<SetSchedule
+					Prices={weekTwoPrice}
+					setPrice={setWeekTwoPrice}
+					Title={"Week Two"}
+				/>
+				<SetSchedule
+					Prices={weekThirdPrice}
+					setPrice={setWeekThirdPrice}
+					Title={"Week Three"}
+				/>
+				<SetSchedule
+					Prices={weekFourthPrice}
+					setPrice={setWeekFourthPrice}
+					Title={"Week four"}
+				/>
+				<div className="button-container">
+					<PrimaryButton>
+						<button className="continue">Continue</button>
+					</PrimaryButton>
+					<div className="price-container">
+						<button className="price-button" onClick={calculate}>
+							Refresh Price
+						</button>
+						<h4 className="price">
+							{total} <b>Naira </b>
+						</h4>
+					</div>
+				</div>
 			</div>
 		</CookingFormWrapper>
 	);

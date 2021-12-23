@@ -83,9 +83,36 @@ const CookingFormWrapper = styled.div`
 				background-color: black;
 			}
 		}
-		.continue {
+		.button-container {
+			display: flex;
 			margin-top: 20px;
-			cursor: pointer;
+			justify-content: space-between;
+			.continue {
+				cursor: pointer;
+			}
+			.price-container {
+				display: flex;
+				align-items: center;
+				button {
+					padding: 10px;
+					font-size: 12px;
+					font-weight: bold;
+					border: none;
+					outline:none;
+					height: fit-content;
+					background-color: black;
+					color: white;
+				}
+				h4{
+					padding:10px;
+					background-color: #f2f2f2;;
+					margin-left: 10px;
+					b{
+						color:green;
+						background-color:white;
+					}
+				}
+			}
 		}
 	}
 `;

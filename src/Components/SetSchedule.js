@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import styled from "styled-components";
 import { v4 as ID } from "uuid";
 
-function SetSchedule() {
+function SetSchedule({ setPrice, Prices, Title }) {
 	const [day, setDay] = useState("");
 	const [days, setDays] = useState([]);
 	const [errorlog, setErrorLog] = useState([{ err: "", type: true }]);
@@ -10,26 +10,23 @@ function SetSchedule() {
 	const [endTime, setEndTime] = useState("");
 	const [weekOne, setWeekOne] = useState([]);
 	const [weekTwo, setWeekTwo] = useState(false);
-	const [pricelist, setPrice] = useState([]);
-	const [weekFour, setWeekFour] = useState(false);
 	let dailySchedule = [];
 	let weeklySchedule = [];
 	let available = false;
 
 	function addItem() {
-		const list = GetSchedule(endTime, day, startTime);
-		// console.log("is it available?", available);
+		const [list, Price] = GetSchedule(endTime, day, startTime);
+
 		if (list === "Not allowed") {
 			setErrorLog([{ err: "Not allowed", type: false }]);
 		} else {
 			setDays([...days, day]);
 			available = checkAvailable();
-			console.log(calculatePrice());
-
 			if (weekOne.length <= 5 && !available) {
 				setErrorLog([{ err: "", type: true }]);
 				dailySchedule = [...dailySchedule, list];
 				setWeekOne([...weekOne, list]);
+				setPrice([...Prices, Price]);
 			} else if (weekOne.length <= 5 && available) {
 				setErrorLog([{ err: "Day exists before", type: false }]);
 			} else {
@@ -37,29 +34,13 @@ function SetSchedule() {
 				setErrorLog([{ err: "You can't add more days to week", type: true }]);
 				weeklySchedule.push(dailySchedule);
 				setWeekTwo([weekOne]);
-				console.log("Add new week");
 			}
 		}
 	}
-
-	function calculatePrice() {
-		if (weekOne.length > 1) {
-			weekOne.reduce(function (a, b) {
-				return a.Price + b.Price;
-			});
-		} else {
-			return "nothing in list";
-		}
-	}
-
 	function checkAvailable() {
-		// console.log("day:", day);
-		// console.log("days:", days);
 		if (days.includes(day)) {
-			// console.log("day available");
 			return true;
 		} else {
-			// console.log("not availabele");
 			return false;
 		}
 	}
@@ -81,8 +62,7 @@ function SetSchedule() {
 		if (startTimeNumber > 6 && endTimeNumber > StartTime && CheckDay) {
 			const Price = Math.ceil((endTimeNumber - StartTime) * 841.15);
 			const collection = { day, startTime, endTime, Price };
-			// console.log("happy");
-			return collection;
+			return [collection, Price];
 		} else if (startTimeNumber > 6 && endTimeNumber === StartTime && CheckDay) {
 			setErrorLog([{ err: "Not allowed", type: false }]);
 			return "Not allowed";
@@ -90,20 +70,18 @@ function SetSchedule() {
 			return "Not allowed";
 		} else if (startTimeNumber <= 6 && endTimeNumber > StartTime) {
 			const Price = Math.ceil((endTimeNumber - StartTime) * 841.15);
-
 			const collection = { day, startTime, endTime, Price };
-			return collection;
+			return [collection, Price];
 		} else if (startTimeNumber > 6 && CheckDay) {
 			const Price = Math.floor(endTimeNumber * 841.15);
 			const collection = { day, startTime, endTime, Price };
-			return collection;
+			return [collection, Price];
 		} else if (CheckDay) {
 			const Price = Math.floor((startTimeNumber + endTimeNumber) * 841.15);
 			const collection = { day, startTime, endTime, Price };
-			return collection;
+			return [collection, Price];
 		} else {
 			setErrorLog([{ err: "Not allowed", type: false }]);
-			console.log("fuck u");
 			return;
 		}
 	}
@@ -127,8 +105,8 @@ function SetSchedule() {
 	}
 
 	return (
-		<>
-			<h3 className="error">Week 1</h3>
+		<Wrapper>
+			<h3 className="error">{Title}</h3>
 			{errorlog.map((err) => {
 				return (
 					<ErrorLog key={ID()} style={{ color: err.type ? "green" : "red" }}>
@@ -248,10 +226,12 @@ function SetSchedule() {
 					</Item>
 				);
 			})}
-		</>
+		</Wrapper>
 	);
 }
-
+const Wrapper = styled.div`
+	margin-top:20px;
+`
 const Item = styled.div`
 	display: flex;
 	margin-top: 10px;
