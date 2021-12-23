@@ -21,6 +21,7 @@ function Subscribe({user}) {
 				setHomeCleaning={setHomeCleaning}
 				setHomeCooking={setHomeCooking}
 				setBoth={setBoth}
+				both={both}
 				user={user}
 				chooseShow={chooseShow}
 				chooseSetShow={chooseSetShow}

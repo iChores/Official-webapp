@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import LoginWrapper from "../Styles/Login.style";
 import JoinImg from "../Assets/JoinImg.png";
 import { useState } from "react";
-import { useNavigate, Navigate } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 import axios from "axios";
 

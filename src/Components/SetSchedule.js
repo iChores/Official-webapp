@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import styled from "styled-components";
 import { v4 as ID } from "uuid";
 
@@ -9,9 +9,7 @@ function SetSchedule({ setPrice, Prices, Title }) {
 	const [startTime, setStartTime] = useState("");
 	const [endTime, setEndTime] = useState("");
 	const [weekOne, setWeekOne] = useState([]);
-	const [weekTwo, setWeekTwo] = useState(false);
 	let dailySchedule = [];
-	let weeklySchedule = [];
 	let available = false;
 
 	function addItem() {
@@ -32,8 +30,6 @@ function SetSchedule({ setPrice, Prices, Title }) {
 			} else {
 				console.log("week full");
 				setErrorLog([{ err: "You can't add more days to week", type: true }]);
-				weeklySchedule.push(dailySchedule);
-				setWeekTwo([weekOne]);
 			}
 		}
 	}
@@ -230,8 +226,8 @@ function SetSchedule({ setPrice, Prices, Title }) {
 	);
 }
 const Wrapper = styled.div`
-	margin-top:20px;
-`
+	margin-top: 20px;
+`;
 const Item = styled.div`
 	display: flex;
 	margin-top: 10px;

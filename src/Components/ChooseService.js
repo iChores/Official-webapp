@@ -82,10 +82,10 @@ function ChooseService({
 					</div>
 				</div>
 				<PrimaryButton onClick={subscriptionTypeHandler}>
-					<a href="#">Choose plan</a>
+					<a href="https://ichores.com/">Choose plan</a>
 				</PrimaryButton>
 				<SecondaryButton onClick={bothHandler} className="every-thing">
-					<a href="#">
+					<a href="https://ichores.com/">
 						I want everything
 						<div className="line"></div>
 					</a>
