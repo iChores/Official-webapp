@@ -3,7 +3,7 @@ import CookingFormWrapper from "../Styles/HomeCookingForm.style";
 import Pan from "../Assets/Pan.png";
 import SetSchedule from "./SetSchedule";
 import { useState } from "react/cjs/react.development";
-function HomeCookingForm({ chooseShow }) {
+function HomeCleaningForm({ chooseShow }) {
 	const [weekOnePrice, setWeekOnePrice] = useState([0]);
 	const [weekTwoPrice, setWeekTwoPrice] = useState([0]);
 	const [weekThirdPrice, setWeekThirdPrice] = useState([0]);
@@ -25,7 +25,7 @@ function HomeCookingForm({ chooseShow }) {
 		const add = (firstWeek + secondWeek + thirdWeek + fourthWeek)
 			.toFixed(2)
 			.replace(/\d(?=(\d{3})+\.)/g, "$&,");
-		setTotal(add)
+		setTotal(add);
 
 		console.log("This is first week price:", firstWeek);
 		console.log("This is second week price:", secondWeek);
@@ -44,26 +44,26 @@ function HomeCookingForm({ chooseShow }) {
 			<div className="form-wrapper">
 				<div className="header">
 					<img src={Pan} alt="" />
-					<h2>Home cooking</h2>
+					<h2>Home Cleaning</h2>
 				</div>
-				<h3 className="size">Table size</h3>
+				<h3 className="size">Number of rooms </h3>
 				<input
 					type="number"
-					placeholder="Number of people to feed"
+					placeholder="Number of rooms to clean"
 					className="number"
 				/>
 				<h3 className="service-prefernce-heading"> Service preferences</h3>
 				<div className="prefernce-container">
 					<input type="checkbox" name="" />
-					<h4>Diabetic</h4>
+					<h4>Asthmatic</h4>
 				</div>
 				<div className="prefernce-container">
 					<input type="checkbox" name="" />
-					<h4>Vegetarian </h4>
+					<h4>Allergic to citrus </h4>
 				</div>
 				<div className="prefernce-container">
 					<input type="checkbox" name="" />
-					<h4>Convalescent </h4>
+					<h4>Others</h4>
 				</div>
 				<h3 className="service-day-heading">Customise service days</h3>
 				<p>
@@ -95,8 +95,7 @@ function HomeCookingForm({ chooseShow }) {
 					</PrimaryButton>
 					<div className="price-container">
 						<button className="price-button" onClick={calculate}>
-
-						Show total price
+							Show total price
 						</button>
 						<h4 className="price">
 							{total} <b>Naira </b>
@@ -108,4 +107,4 @@ function HomeCookingForm({ chooseShow }) {
 	);
 }
 
-export default HomeCookingForm;
+export default HomeCleaningForm;

@@ -1,17 +1,14 @@
 import { useState } from "react";
 import ChooseService from "../Components/ChooseService";
+import HomeCleaningForm from "../Components/HomeCleaningForm";
 import HomeCookingForm from "../Components/HomeCookingForm";
 
 function Subscribe({user}) {
 	const [homeCooking, setHomeCooking] = useState(false);
 	const [homeCleaning, setHomeCleaning] = useState(false);
 	const [both, setBoth] = useState(false);
-	const [chooseShow, chooseSetShow] = useState(false);
-	const [subscriptionData, setSubscriptionData] = useState({
-		subscriptionType: "",
-		subscriptionDetails: "",
-		homeKeeperDetails: "",
-	});
+	const [chooseShow, chooseSetShow] = useState(true);
+	const [subscriptionType, setSubscriptionType] = useState("");
 
 	return (
 		<>
@@ -25,11 +22,15 @@ function Subscribe({user}) {
 				user={user}
 				chooseShow={chooseShow}
 				chooseSetShow={chooseSetShow}
-				subscriptionData={subscriptionData}
-				setSubscriptionData={setSubscriptionData}
+				subscriptionTyper={subscriptionType}
+				setSubscriptionType={setSubscriptionType}
 			/>
-			<HomeCookingForm chooseShow={chooseShow}/>
-
+			{subscriptionType === "home cooking" && (
+				<HomeCookingForm chooseShow={chooseShow} />
+			)}
+			{subscriptionType === "home cleaning" && (
+				<HomeCleaningForm chooseShow={chooseShow} />
+			)}
 		</>
 	);
 }

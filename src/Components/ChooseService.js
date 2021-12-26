@@ -6,8 +6,8 @@ import ServiceWrapper from "../Styles/ChooseService.style";
 function ChooseService({
 	homeCleaning,
 	homeCooking,
-	subscriptionData,
-	setSubscriptionData,
+	subscriptionTyper,
+	setSubscriptionType,
 	setBoth,
 	setHomeCooking,
 	setHomeCleaning,
@@ -27,20 +27,22 @@ function ChooseService({
 		setHomeCooking(false);
 		setHomeCleaning(false);
 		setBoth(true);
-		setSubscriptionData({ ...subscriptionData, subscriptionType:"both" });
+		setSubscriptionType("both");
+		console.log(subscriptionTyper);
 	}
 	console.log("logging user from home cooking",user);
 	const subscriptionType = (function () {
 		if (homeCleaning) {
 			return "home cleaning";
 		} else if (homeCooking) {
-			return "home cooking ";
+			return "home cooking";
 		} else {
 			return " none selected";
 		}
 	})();
 	function subscriptionTypeHandler() {
-		setSubscriptionData({ ...subscriptionData, subscriptionType });
+		console.log(subscriptionTyper, " this is sub type:", subscriptionType);
+		setSubscriptionType( subscriptionType );
 		chooseSetShow(false)
 	}
 	return (
@@ -82,13 +84,13 @@ function ChooseService({
 					</div>
 				</div>
 				<PrimaryButton onClick={subscriptionTypeHandler}>
-					<a href="https://ichores.com/">Choose plan</a>
+					<button href="#">Choose plan</button>
 				</PrimaryButton>
 				<SecondaryButton onClick={bothHandler} className="every-thing">
-					<a href="https://ichores.com/">
+					<button>
 						I want everything
 						<div className="line"></div>
-					</a>
+					</button>
 				</SecondaryButton>
 			</div>
 		</ServiceWrapper>

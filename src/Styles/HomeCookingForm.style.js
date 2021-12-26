@@ -85,6 +85,7 @@ const CookingFormWrapper = styled.div`
 		}
 		.button-container {
 			display: flex;
+			flex-direction: column-reverse;
 			margin-top: 20px;
 			justify-content: space-between;
 			.continue {

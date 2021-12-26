@@ -17,19 +17,36 @@ button{
 
 `
 export const SecondaryButton = styled.div`
-a{
-    display: flex;
-    flex-direction: column;
-    font-size: 22px;
-    font-weight: bolder;
-    font-family: "poppins";
-    width: fit-content;
-    .line{
-        height: 4px;
-        background-color: ${primaryColor};
-        width: 60%;
-        margin-top: 3px;
-    }
-}
-`
+	a {
+		display: flex;
+		flex-direction: column;
+		font-size: 22px;
+		font-weight: bolder;
+		font-family: "poppins";
+		width: fit-content;
+		.line {
+			height: 4px;
+			background-color: ${primaryColor};
+			width: 60%;
+			margin-top: 3px;
+		}
+	}
+	button {
+		display: flex;
+		flex-direction: column;
+		font-size: 22px;
+		font-weight: bolder;
+		font-family: "poppins";
+		width: fit-content;
+        background-color: transparent;
+        border:none;
+        outline:none;
+		.line {
+			height: 4px;
+			background-color: ${primaryColor};
+			width: 60%;
+			margin-top: 3px;
+		}
+	}
+`;
 
