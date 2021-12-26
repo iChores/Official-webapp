@@ -37,7 +37,7 @@ function ChooseService({
 		} else if (homeCooking) {
 			return "home cooking";
 		} else {
-			return " none selected";
+			return "none selected";
 		}
 	})();
 	function subscriptionTypeHandler() {
