@@ -35,12 +35,28 @@ const CookingFormWrapper = styled.div`
 			align-self: center;
 			display: flex;
 			align-items: center;
+			position: relative;
 			img {
 				width: 50px;
 			}
 			h2 {
 				font-size: 22px;
 				margin-left: 30x;
+			}
+			button {
+				background-color:transparent;
+				border: none;
+				position: absolute;
+				outline: none;
+				right: 320px;
+				cursor: pointer;
+				h4 {
+					margin-top: -10px;
+				}
+				img {
+					transform: rotate(180deg);
+					width: 35px;
+				}
 			}
 		}
 		.prefernce-container {
@@ -99,18 +115,18 @@ const CookingFormWrapper = styled.div`
 					font-size: 12px;
 					font-weight: bold;
 					border: none;
-					outline:none;
+					outline: none;
 					height: fit-content;
 					background-color: black;
 					color: white;
 				}
-				h4{
-					padding:10px;
-					background-color: #f2f2f2;;
+				h4 {
+					padding: 10px;
+					background-color: #f2f2f2;
 					margin-left: 10px;
-					b{
-						color:green;
-						background-color:white;
+					b {
+						color: green;
+						background-color: white;
 					}
 				}
 			}

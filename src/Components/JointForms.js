@@ -1,9 +1,10 @@
 import { PrimaryButton } from "../Styles/Buttons.style";
 import CookingFormWrapper from "../Styles/HomeCookingForm.style";
-import Pan from "../Assets/Pan.png";
+import Pan from "../Assets/Both.png";
 import SetSchedule from "./SetSchedule";
+import LeftArrow from "../Assets/LeftArrow.png";
 import { useState } from "react/cjs/react.development";
-function JointForm({ chooseShow }) {
+function JointForm({ chooseShow, chooseSetShow }) {
 	const [weekOnePrice, setWeekOnePrice] = useState([0]);
 	const [weekTwoPrice, setWeekTwoPrice] = useState([0]);
 	const [weekThirdPrice, setWeekThirdPrice] = useState([0]);
@@ -34,6 +35,9 @@ function JointForm({ chooseShow }) {
 		console.log("This is total week price:", total);
 		console.log("This is total week price converted:", add);
 	}
+	function goBack() {
+		chooseSetShow(true);
+	}
 
 	return (
 		<CookingFormWrapper
@@ -43,6 +47,10 @@ function JointForm({ chooseShow }) {
 		>
 			<div className="form-wrapper">
 				<div className="header">
+					<button className="back" onClick={goBack}>
+						<img src={LeftArrow} alt="" />
+						<h4>Back</h4>
+					</button>
 					<img src={Pan} alt="" />
 					<h2>Subscribe for both</h2>
 				</div>

@@ -2,8 +2,9 @@ import { PrimaryButton } from "../Styles/Buttons.style";
 import CookingFormWrapper from "../Styles/HomeCookingForm.style";
 import Pan from "../Assets/Pan.png";
 import SetSchedule from "./SetSchedule";
+import LeftArrow from "../Assets/LeftArrow.png";
 import { useState } from "react";
-function HomeCookingForm({ chooseShow }) {
+function HomeCookingForm({ chooseShow, chooseSetShow }) {
 	const [weekOnePrice, setWeekOnePrice] = useState([0]);
 	const [weekTwoPrice, setWeekTwoPrice] = useState([0]);
 	const [weekThirdPrice, setWeekThirdPrice] = useState([0]);
@@ -25,7 +26,7 @@ function HomeCookingForm({ chooseShow }) {
 		const add = (firstWeek + secondWeek + thirdWeek + fourthWeek)
 			.toFixed(2)
 			.replace(/\d(?=(\d{3})+\.)/g, "$&,");
-		setTotal(add)
+		setTotal(add);
 
 		console.log("This is first week price:", firstWeek);
 		console.log("This is second week price:", secondWeek);
@@ -33,6 +34,9 @@ function HomeCookingForm({ chooseShow }) {
 		console.log("This is fourth week price:", fourthWeek);
 		console.log("This is total week price:", total);
 		console.log("This is total week price converted:", add);
+	}
+	function goBack() {
+		chooseSetShow(true);
 	}
 
 	return (
@@ -43,6 +47,10 @@ function HomeCookingForm({ chooseShow }) {
 		>
 			<div className="form-wrapper">
 				<div className="header">
+					<button className="back" onClick={goBack}>
+						<img src={LeftArrow} alt="" />
+						<h4>Back</h4>
+					</button>
 					<img src={Pan} alt="" />
 					<h2>Home cooking</h2>
 				</div>
@@ -95,8 +103,7 @@ function HomeCookingForm({ chooseShow }) {
 					</PrimaryButton>
 					<div className="price-container">
 						<button className="price-button" onClick={calculate}>
-
-						Show total price
+							Show total price
 						</button>
 						<h4 className="price">
 							{total} <b>Naira </b>

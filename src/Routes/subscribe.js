@@ -27,13 +27,13 @@ function Subscribe({user}) {
 				setSubscriptionType={setSubscriptionType}
 			/>
 			{subscriptionType === "home cooking" && (
-				<HomeCookingForm chooseShow={chooseShow} />
+				<HomeCookingForm chooseShow={chooseShow} chooseSetShow={chooseSetShow} />
 			)}
 			{subscriptionType === "home cleaning" && (
-				<HomeCleaningForm chooseShow={chooseShow} />
+				<HomeCleaningForm chooseShow={chooseShow} chooseSetShow={chooseSetShow} />
 			)}
 			{subscriptionType === "both" && (
-				<JointForm chooseShow={chooseShow} />
+				<JointForm chooseShow={chooseShow} chooseSetShow={chooseSetShow} />
 			)}
 		</>
 	);

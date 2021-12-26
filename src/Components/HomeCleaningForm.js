@@ -1,9 +1,10 @@
 import { PrimaryButton } from "../Styles/Buttons.style";
 import CookingFormWrapper from "../Styles/HomeCookingForm.style";
-import Pan from "../Assets/Pan.png";
+import Pan from "../Assets/Cleaning.png";
+import LeftArrow from "../Assets/LeftArrow.png";
 import SetSchedule from "./SetSchedule";
 import { useState } from "react";
-function HomeCleaningForm({ chooseShow }) {
+function HomeCleaningForm({ chooseShow,chooseSetShow}) {
 	const [weekOnePrice, setWeekOnePrice] = useState([0]);
 	const [weekTwoPrice, setWeekTwoPrice] = useState([0]);
 	const [weekThirdPrice, setWeekThirdPrice] = useState([0]);
@@ -34,6 +35,9 @@ function HomeCleaningForm({ chooseShow }) {
 		console.log("This is total week price:", total);
 		console.log("This is total week price converted:", add);
 	}
+	function goBack() {
+		chooseSetShow(true)
+	}
 
 	return (
 		<CookingFormWrapper
@@ -43,15 +47,15 @@ function HomeCleaningForm({ chooseShow }) {
 		>
 			<div className="form-wrapper">
 				<div className="header">
+					<button className="back" onClick={goBack}>
+						<img src={LeftArrow} alt="" />
+						<h4>Back</h4>
+					</button>
 					<img src={Pan} alt="" />
 					<h2>Home Cleaning</h2>
 				</div>
 				<h3 className="size">Number of rooms to clean </h3>
-				<input
-					type="number"
-					placeholder="Input a number"
-					className="number"
-				/>
+				<input type="number" placeholder="Input a number" className="number" />
 				<h3 className="service-prefernce-heading"> Service preferences</h3>
 				<div className="prefernce-container">
 					<input type="checkbox" name="" />
