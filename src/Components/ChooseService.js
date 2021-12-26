@@ -29,6 +29,7 @@ function ChooseService({
 		setBoth(true);
 		setSubscriptionType("both");
 		console.log(subscriptionTyper);
+		chooseSetShow(false);
 	}
 	console.log("logging user from home cooking",user);
 	const subscriptionType = (function () {

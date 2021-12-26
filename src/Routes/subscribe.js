@@ -2,6 +2,7 @@ import { useState } from "react";
 import ChooseService from "../Components/ChooseService";
 import HomeCleaningForm from "../Components/HomeCleaningForm";
 import HomeCookingForm from "../Components/HomeCookingForm";
+import JointForm from "../Components/JointForms";
 
 function Subscribe({user}) {
 	const [homeCooking, setHomeCooking] = useState(false);
@@ -30,6 +31,9 @@ function Subscribe({user}) {
 			)}
 			{subscriptionType === "home cleaning" && (
 				<HomeCleaningForm chooseShow={chooseShow} />
+			)}
+			{subscriptionType === "both" && (
+				<JointForm chooseShow={chooseShow} />
 			)}
 		</>
 	);

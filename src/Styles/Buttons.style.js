@@ -41,6 +41,7 @@ export const SecondaryButton = styled.div`
         background-color: transparent;
         border:none;
         outline:none;
+		cursor:pointer;
 		.line {
 			height: 4px;
 			background-color: ${primaryColor};

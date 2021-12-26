@@ -2,8 +2,8 @@ import { PrimaryButton } from "../Styles/Buttons.style";
 import CookingFormWrapper from "../Styles/HomeCookingForm.style";
 import Pan from "../Assets/Pan.png";
 import SetSchedule from "./SetSchedule";
-import { useState } from "react";
-function HomeCleaningForm({ chooseShow }) {
+import { useState } from "react/cjs/react.development";
+function JointForm({ chooseShow }) {
 	const [weekOnePrice, setWeekOnePrice] = useState([0]);
 	const [weekTwoPrice, setWeekTwoPrice] = useState([0]);
 	const [weekThirdPrice, setWeekThirdPrice] = useState([0]);
@@ -44,18 +44,32 @@ function HomeCleaningForm({ chooseShow }) {
 			<div className="form-wrapper">
 				<div className="header">
 					<img src={Pan} alt="" />
-					<h2>Home Cleaning</h2>
+					<h2>Subscribe for both</h2>
 				</div>
-				<h3 className="size">Number of rooms to clean </h3>
+				<h3 className="size">Table size</h3>
 				<input
 					type="number"
-					placeholder="Input a number"
+					placeholder="Number of people to feed"
 					className="number"
 				/>
+				<h3 className="size">Number of rooms to clean</h3>
+				<input type="number" placeholder="Input number" className="number" />
 				<h3 className="service-prefernce-heading"> Service preferences</h3>
 				<div className="prefernce-container">
 					<input type="checkbox" name="" />
-					<h4>Asthmatic</h4>
+					<h4>Diabetic</h4>
+				</div>
+				<div className="prefernce-container">
+					<input type="checkbox" name="" />
+					<h4>Vegetarian </h4>
+				</div>
+				<div className="prefernce-container">
+					<input type="checkbox" name="" />
+					<h4>Convalescent </h4>
+				</div>
+				<div className="prefernce-container">
+					<input type="checkbox" name="" />
+					<h4>Asthmatic </h4>
 				</div>
 				<div className="prefernce-container">
 					<input type="checkbox" name="" />
@@ -63,8 +77,9 @@ function HomeCleaningForm({ chooseShow }) {
 				</div>
 				<div className="prefernce-container">
 					<input type="checkbox" name="" />
-					<h4>Others</h4>
+					<h4>Others </h4>
 				</div>
+
 				<h3 className="service-day-heading">Customise service days</h3>
 				<p>
 					The day and time chosen iterates over the course of the subscription
@@ -107,4 +122,4 @@ function HomeCleaningForm({ chooseShow }) {
 	);
 }
 
-export default HomeCleaningForm;
+export default JointForm;
