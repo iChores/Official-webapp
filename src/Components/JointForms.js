@@ -3,8 +3,13 @@ import CookingFormWrapper from "../Styles/HomeCookingForm.style";
 import Pan from "../Assets/Both.png";
 import SetSchedule from "./SetSchedule";
 import LeftArrow from "../Assets/LeftArrow.png";
-import { useState } from "react/cjs/react.development";
-function JointForm({ chooseShow, chooseSetShow }) {
+import { useState } from "react";
+function JointForm({
+	chooseShow,
+	homekeeperShow,
+	setHomekeeperShow,
+	chooseSetShow,
+}) {
 	const [weekOnePrice, setWeekOnePrice] = useState([0]);
 	const [weekTwoPrice, setWeekTwoPrice] = useState([0]);
 	const [weekThirdPrice, setWeekThirdPrice] = useState([0]);
@@ -38,11 +43,14 @@ function JointForm({ chooseShow, chooseSetShow }) {
 	function goBack() {
 		chooseSetShow(true);
 	}
+	function Continue() {
+		setHomekeeperShow(true);
+	}
 
 	return (
 		<CookingFormWrapper
 			style={{
-				display: chooseShow ? "none" : "flex",
+				display: chooseShow || homekeeperShow ? "none" : "flex",
 			}}
 		>
 			<div className="form-wrapper">
@@ -118,7 +126,7 @@ function JointForm({ chooseShow, chooseSetShow }) {
 				/>
 				<div className="button-container">
 					<PrimaryButton>
-						<button className="continue">Continue</button>
+						<button className="continue" onClick={Continue}>Continue</button>
 					</PrimaryButton>
 					<div className="price-container">
 						<button className="price-button" onClick={calculate}>

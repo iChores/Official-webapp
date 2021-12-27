@@ -48,6 +48,7 @@ function Subscribe({user}) {
 				<JointForm
 					chooseShow={chooseShow}
 					chooseSetShow={chooseSetShow}
+					setHomekeeperShow={setHomekeeperShow}
 					homekeeperShow={homekeeperShow}
 				/>
 			)}
