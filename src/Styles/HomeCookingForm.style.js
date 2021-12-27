@@ -44,7 +44,7 @@ const CookingFormWrapper = styled.div`
 				margin-left: 30x;
 			}
 			button {
-				background-color:transparent;
+				background-color: transparent;
 				border: none;
 				position: absolute;
 				outline: none;
@@ -130,6 +130,9 @@ const CookingFormWrapper = styled.div`
 					}
 				}
 			}
+		}
+		.start-date-wrapper{
+			margin: 10px 0;
 		}
 	}
 `;

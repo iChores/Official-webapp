@@ -13,6 +13,8 @@ button{
     background-color: black;
     border:none;
     outline:none;
+	font-weight:bold;
+	cursor:pointer;
 }
 
 `

@@ -4,7 +4,7 @@ import Pan from "../Assets/Pan.png";
 import SetSchedule from "./SetSchedule";
 import LeftArrow from "../Assets/LeftArrow.png";
 import { useState } from "react";
-function HomeCookingForm({ chooseShow, chooseSetShow }) {
+function HomeCookingForm({ chooseShow,setHomekeeperShow,homekeeperShow, chooseSetShow }) {
 	const [weekOnePrice, setWeekOnePrice] = useState([0]);
 	const [weekTwoPrice, setWeekTwoPrice] = useState([0]);
 	const [weekThirdPrice, setWeekThirdPrice] = useState([0]);
@@ -38,11 +38,14 @@ function HomeCookingForm({ chooseShow, chooseSetShow }) {
 	function goBack() {
 		chooseSetShow(true);
 	}
+	function Continue() {
+		setHomekeeperShow(true);
+	}
 
 	return (
 		<CookingFormWrapper
 			style={{
-				display: chooseShow ? "none" : "flex",
+				display: chooseShow || homekeeperShow ? "none" : "flex",
 			}}
 		>
 			<div className="form-wrapper">
@@ -77,6 +80,10 @@ function HomeCookingForm({ chooseShow, chooseSetShow }) {
 				<p>
 					The day and time chosen iterates over the course of the subscription
 				</p>
+				<div className="start-date-wrapper">
+					<h3 className="start-date-heading">Select start date</h3>
+					<input type="date" name="Date" id="date" />
+				</div>
 				<SetSchedule
 					Prices={weekOnePrice}
 					setPrice={setWeekOnePrice}
@@ -99,7 +106,9 @@ function HomeCookingForm({ chooseShow, chooseSetShow }) {
 				/>
 				<div className="button-container">
 					<PrimaryButton>
-						<button className="continue">Continue</button>
+						<button className="continue" onClick={Continue}>
+							Continue
+						</button>
 					</PrimaryButton>
 					<div className="price-container">
 						<button className="price-button" onClick={calculate}>

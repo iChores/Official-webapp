@@ -92,6 +92,10 @@ function JointForm({ chooseShow, chooseSetShow }) {
 				<p>
 					The day and time chosen iterates over the course of the subscription
 				</p>
+				<div className="start-date-wrapper">
+					<h3 className="start-date-heading">Select start date</h3>
+					<input type="date" name="Date" id="date" />
+				</div>
 				<SetSchedule
 					Prices={weekOnePrice}
 					setPrice={setWeekOnePrice}
