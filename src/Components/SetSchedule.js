@@ -2,19 +2,19 @@ import { useState } from "react";
 import styled from "styled-components";
 import { v4 as ID } from "uuid";
 
-function SetSchedule({ setPrice, Prices, Title }) {
+function SetSchedule({ setPrice, Prices, setDateLog, dateLog, Title, unitPrice }) {
 	const [day, setDay] = useState("");
 	const [days, setDays] = useState([]);
 	const [errorlog, setErrorLog] = useState([{ err: "", type: true }]);
 	const [startTime, setStartTime] = useState("");
 	const [endTime, setEndTime] = useState("");
+	const [date, setDate] = useState(0);
 	const [weekOne, setWeekOne] = useState([]);
 	let dailySchedule = [];
 	let available = false;
 
 	function addItem() {
-		const [list, Price] = GetSchedule(endTime, day, startTime);
-
+		const [list, Price] = GetSchedule(endTime, day, startTime, date);
 		if (list === "Not allowed") {
 			setErrorLog([{ err: "Not allowed", type: false }]);
 		} else {
@@ -25,6 +25,7 @@ function SetSchedule({ setPrice, Prices, Title }) {
 				dailySchedule = [...dailySchedule, list];
 				setWeekOne([...weekOne, list]);
 				setPrice([...Prices, Price]);
+				setDateLog([...dateLog, date]);
 			} else if (weekOne.length <= 5 && available) {
 				setErrorLog([{ err: "Day exists before", type: false }]);
 			} else {
@@ -41,7 +42,7 @@ function SetSchedule({ setPrice, Prices, Title }) {
 		}
 	}
 
-	function GetSchedule(endTime, day, startTime) {
+	function GetSchedule(endTime, day, startTime,date) {
 		const endTimeNumber = extractTimeToNumber(endTime);
 		const CheckDay = checkDay(day);
 		const startTimeNumber = 12 - extractTimeToNumber(startTime);
@@ -51,13 +52,12 @@ function SetSchedule({ setPrice, Prices, Title }) {
 			endTimeNumber,
 			startTimeNumber,
 			StartTime,
-			day,
-			"pricelist:"
+			day,date,
 		);
 
 		if (startTimeNumber > 6 && endTimeNumber > StartTime && CheckDay) {
-			const Price = Math.ceil((endTimeNumber - StartTime) * 841.15);
-			const collection = { day, startTime, endTime, Price };
+			const Price = Math.ceil((endTimeNumber - StartTime) * unitPrice);
+			const collection = { day, startTime, endTime, Price,date};
 			return [collection, Price];
 		} else if (startTimeNumber > 6 && endTimeNumber === StartTime && CheckDay) {
 			setErrorLog([{ err: "Not allowed", type: false }]);
@@ -65,16 +65,16 @@ function SetSchedule({ setPrice, Prices, Title }) {
 		} else if (startTimeNumber < 6 && StartTime === endTimeNumber) {
 			return "Not allowed";
 		} else if (startTimeNumber <= 6 && endTimeNumber > StartTime) {
-			const Price = Math.ceil((endTimeNumber - StartTime) * 841.15);
-			const collection = { day, startTime, endTime, Price };
+			const Price = Math.ceil((endTimeNumber - StartTime) * unitPrice);
+			const collection = { day, startTime, endTime, Price,date };
 			return [collection, Price];
 		} else if (startTimeNumber > 6 && CheckDay) {
-			const Price = Math.floor(endTimeNumber * 841.15);
-			const collection = { day, startTime, endTime, Price };
+			const Price = Math.floor(endTimeNumber * unitPrice);
+			const collection = { day, startTime, endTime, Price, date};
 			return [collection, Price];
 		} else if (CheckDay) {
-			const Price = Math.floor((startTimeNumber + endTimeNumber) * 841.15);
-			const collection = { day, startTime, endTime, Price };
+			const Price = Math.floor((startTimeNumber + endTimeNumber) * unitPrice);
+			const collection = { day, startTime, endTime, Price,date};
 			return [collection, Price];
 		} else {
 			setErrorLog([{ err: "Not allowed", type: false }]);
@@ -101,10 +101,43 @@ function SetSchedule({ setPrice, Prices, Title }) {
 	}
 
 	function handleDate(e) {
+		setErrorLog([{ err: "", type: true }]);
 		const valu = e.target.value;
-		const convertedDate = new Date(valu)
-		console.log("this is value",valu);
-		console.log("this is converted:",convertedDate.toDateString());
+		const convertedDate = new Date(valu).toDateString();
+		const splitDate = convertedDate.split(" ");
+		console.log("this is value", valu);
+		console.log("this is converted:", convertedDate);
+		console.log("dateLog:",dateLog);
+		console.log("this is first word in the array:", splitDate[0]);
+
+		if (dateLog.includes(valu)) {
+			setErrorLog([{ err: "Date already exists", type: false }]);
+		} else {
+			setDate(valu);
+			switch (splitDate[0]) {
+				case "Mon":
+					setDay("Monday");
+					break;
+				case "Tue":
+					setDay("Tuesday");
+					break;
+				case "Wed":
+					setDay("Wednesday");
+					break;
+				case "Thu":
+					setDay("Thursday");
+					break;
+				case "Fri":
+					setDay("Friday");
+					break;
+				case "Sat":
+					setDay("Saturday");
+					break;
+				default:
+					setErrorLog([{ err: "Sundays not allowed", type: false }]);
+					break;
+			}
+		}
 	}
 
 	return (
@@ -122,7 +155,7 @@ function SetSchedule({ setPrice, Prices, Title }) {
 					<div className="select-wrapper">
 						<h5>set schedule</h5>
 					</div>
-					<input type="date" name="" id="" onChange={handleDate}/>
+					<input type="date" name="" id="" onChange={handleDate} />
 				</div>
 				<div className="container">
 					<select

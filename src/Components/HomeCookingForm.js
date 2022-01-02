@@ -4,11 +4,12 @@ import Pan from "../Assets/Pan.png";
 import SetSchedule from "./SetSchedule";
 import LeftArrow from "../Assets/LeftArrow.png";
 import { useState } from "react";
-function HomeCookingForm({ chooseShow,setHomekeeperShow,homekeeperShow, chooseSetShow }) {
+function HomeCookingForm({ chooseShow,setTotalPrice,setHomekeeperShow,homekeeperShow, chooseSetShow }) {
 	const [weekOnePrice, setWeekOnePrice] = useState([0]);
 	const [weekTwoPrice, setWeekTwoPrice] = useState([0]);
 	const [weekThirdPrice, setWeekThirdPrice] = useState([0]);
 	const [weekFourthPrice, setWeekFourthPrice] = useState([0]);
+	const [dateLog,setDateLog] = useState([])
 	const [total, setTotal] = useState("0.00");
 	function calculate() {
 		const firstWeek = weekOnePrice.reduce((a, b) => {
@@ -39,7 +40,10 @@ function HomeCookingForm({ chooseShow,setHomekeeperShow,homekeeperShow, chooseSe
 		chooseSetShow(true);
 	}
 	function Continue() {
+		calculate()
 		setHomekeeperShow(true);
+		setTotalPrice(total)
+
 	}
 
 	return (
@@ -88,21 +92,33 @@ function HomeCookingForm({ chooseShow,setHomekeeperShow,homekeeperShow, chooseSe
 					Prices={weekOnePrice}
 					setPrice={setWeekOnePrice}
 					Title={"Week one"}
+					unitPrice={1400}
+					dateLog={dateLog}
+					setDateLog={setDateLog}
 				/>
 				<SetSchedule
 					Prices={weekTwoPrice}
 					setPrice={setWeekTwoPrice}
 					Title={"Week Two"}
+					unitPrice={1400}
+					dateLog={dateLog}
+					setDateLog={setDateLog}
 				/>
 				<SetSchedule
 					Prices={weekThirdPrice}
 					setPrice={setWeekThirdPrice}
 					Title={"Week Three"}
+					unitPrice={1400}
+					dateLog={dateLog}
+					setDateLog={setDateLog}
 				/>
 				<SetSchedule
 					Prices={weekFourthPrice}
 					setPrice={setWeekFourthPrice}
 					Title={"Week four"}
+					unitPrice={1400}
+					dateLog={dateLog}
+					setDateLog={setDateLog}
 				/>
 				<div className="button-container">
 					<PrimaryButton>

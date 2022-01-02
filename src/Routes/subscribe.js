@@ -10,6 +10,7 @@ function Subscribe({user}) {
 	const [homeCleaning, setHomeCleaning] = useState(false);
 	const [both, setBoth] = useState(false);
 	const [chooseShow, chooseSetShow] = useState(true);
+	const [totalPrice, setTotalPrice] = useState("0.00")
 	const [homekeeperShow, setHomekeeperShow] = useState(false);
 	const [subscriptionType, setSubscriptionType] = useState("");
 
@@ -34,25 +35,31 @@ function Subscribe({user}) {
 					chooseSetShow={chooseSetShow}
 					homekeeperShow={homekeeperShow}
 					setHomekeeperShow={setHomekeeperShow}
+					setTotalPrice={setTotalPrice}
 				/>
 			)}
 			{subscriptionType === "home cleaning" && (
 				<HomeCleaningForm
 					chooseShow={chooseShow}
 					chooseSetShow={chooseSetShow}
-					setHomekeeperShow={setHomekeeperShow}
 					homekeeperShow={homekeeperShow}
+					setHomekeeperShow={setHomekeeperShow}
+					setTotalPrice={setTotalPrice}
 				/>
 			)}
 			{subscriptionType === "both" && (
 				<JointForm
 					chooseShow={chooseShow}
 					chooseSetShow={chooseSetShow}
-					setHomekeeperShow={setHomekeeperShow}
 					homekeeperShow={homekeeperShow}
+					setHomekeeperShow={setHomekeeperShow}
+					setTotalPrice={setTotalPrice}
 				/>
 			)}
-			<SelectHomeKeeper homekeeperShow={homekeeperShow} />
+			<SelectHomeKeeper
+				homekeeperShow={homekeeperShow}
+				totalPrice={totalPrice}
+			/>
 		</>
 	);
 }

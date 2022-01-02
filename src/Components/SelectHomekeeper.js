@@ -5,7 +5,7 @@ import { useReducer, useState } from "react";
 import HomeKeeperWrapper from "../Styles/SelectHomeKeeper.style";
 import { useEffect } from "react";
 
-function SelectHomeKeeper({ homekeeperShow }) {
+function SelectHomeKeeper({ homekeeperShow, totalPrice }) {
 	const [allSelected, setAllSelected] = useState(false);
 	return (
 		<HomeKeeperWrapper
@@ -60,7 +60,7 @@ function SelectHomeKeeper({ homekeeperShow }) {
 				<div className="price-container">
 					<h3>Price</h3>
 					<h4>
-						0.00 <span>Naira</span>
+						{totalPrice} <span>Naira</span>
 					</h4>
 				</div>
 			</div>
