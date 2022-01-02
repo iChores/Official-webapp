@@ -4,7 +4,6 @@ import Pan from "../Assets/Cleaning.png";
 import LeftArrow from "../Assets/LeftArrow.png";
 import SetSchedule from "./SetSchedule";
 import { useState } from "react";
-import { setState } from "../Assets/Utility";
 function HomeCleaningForm({
 	chooseShow,
 	setTotalPrice,
@@ -47,9 +46,25 @@ function HomeCleaningForm({
 		chooseSetShow(true);
 	}
 	function Continue() {
-		calculate();
+
+		const firstWeek = weekOnePrice.reduce((a, b) => {
+			return a + b;
+		});
+		const secondWeek = weekTwoPrice.reduce((a, b) => {
+			return a + b;
+		});
+		const thirdWeek = weekThirdPrice.reduce((a, b) => {
+			return a + b;
+		});
+		const fourthWeek = weekFourthPrice.reduce((a, b) => {
+			return a + b;
+		});
+		const add = (firstWeek + secondWeek + thirdWeek + fourthWeek)
+			.toFixed(2)
+			.replace(/\d(?=(\d{3})+\.)/g, "$&,");
+
+		setTotalPrice(add);
 		setHomekeeperShow(true);
-		setTotalPrice(total);
 	}
 
 	return (
@@ -95,6 +110,8 @@ function HomeCleaningForm({
 					setPrice={setWeekOnePrice}
 					Title={"Week one"}
 					unitPrice={1346.15}
+					dateLog={dateLog}
+					setDateLog={setDateLog}
 				/>
 				<SetSchedule
 					Prices={weekTwoPrice}

@@ -4,12 +4,18 @@ import Pan from "../Assets/Pan.png";
 import SetSchedule from "./SetSchedule";
 import LeftArrow from "../Assets/LeftArrow.png";
 import { useState } from "react";
-function HomeCookingForm({ chooseShow,setTotalPrice,setHomekeeperShow,homekeeperShow, chooseSetShow }) {
+function HomeCookingForm({
+	chooseShow,
+	setTotalPrice,
+	setHomekeeperShow,
+	homekeeperShow,
+	chooseSetShow,
+}) {
 	const [weekOnePrice, setWeekOnePrice] = useState([0]);
 	const [weekTwoPrice, setWeekTwoPrice] = useState([0]);
 	const [weekThirdPrice, setWeekThirdPrice] = useState([0]);
 	const [weekFourthPrice, setWeekFourthPrice] = useState([0]);
-	const [dateLog,setDateLog] = useState([])
+	const [dateLog, setDateLog] = useState([]);
 	const [total, setTotal] = useState("0.00");
 	function calculate() {
 		const firstWeek = weekOnePrice.reduce((a, b) => {
@@ -28,22 +34,30 @@ function HomeCookingForm({ chooseShow,setTotalPrice,setHomekeeperShow,homekeeper
 			.toFixed(2)
 			.replace(/\d(?=(\d{3})+\.)/g, "$&,");
 		setTotal(add);
-
-		console.log("This is first week price:", firstWeek);
-		console.log("This is second week price:", secondWeek);
-		console.log("This is third week price:", thirdWeek);
-		console.log("This is fourth week price:", fourthWeek);
-		console.log("This is total week price:", total);
-		console.log("This is total week price converted:", add);
 	}
 	function goBack() {
 		chooseSetShow(true);
 	}
 	function Continue() {
-		calculate()
-		setHomekeeperShow(true);
-		setTotalPrice(total)
 
+		const firstWeek = weekOnePrice.reduce((a, b) => {
+			return a + b;
+		});
+		const secondWeek = weekTwoPrice.reduce((a, b) => {
+			return a + b;
+		});
+		const thirdWeek = weekThirdPrice.reduce((a, b) => {
+			return a + b;
+		});
+		const fourthWeek = weekFourthPrice.reduce((a, b) => {
+			return a + b;
+		});
+		const add = (firstWeek + secondWeek + thirdWeek + fourthWeek)
+			.toFixed(2)
+			.replace(/\d(?=(\d{3})+\.)/g, "$&,");
+
+		setTotalPrice(add);
+		setHomekeeperShow(true);
 	}
 
 	return (
