@@ -79,6 +79,9 @@ const CookingFormWrapper = styled.div`
 			display: flex;
 			align-items: center;
 			margin-top: 10px;
+			.pick-day{
+				margin-top:-10px;
+			}
 			.container {
 				margin-left: 30px;
 				select {

@@ -100,6 +100,13 @@ function SetSchedule({ setPrice, Prices, Title }) {
 		}
 	}
 
+	function handleDate(e) {
+		const valu = e.target.value;
+		const convertedDate = new Date(valu)
+		console.log("this is value",valu);
+		console.log("this is converted:",convertedDate.toDateString());
+	}
+
 	return (
 		<Wrapper>
 			<h3 className="error">{Title}</h3>
@@ -111,21 +118,11 @@ function SetSchedule({ setPrice, Prices, Title }) {
 				);
 			})}
 			<div className="service-day-wrapper">
-				<div className="container">
-					<select
-						name=""
-						id=""
-						value={day}
-						onChange={(e) => setDay(e.target.value)}
-					>
-						<option value="Day">select day</option>
-						<option value="Monday">Moday</option>
-						<option value="Tuesday">Tuesday</option>
-						<option value="Wedsday">Wedsday</option>
-						<option value="Thursday">Thursday</option>
-						<option value="Friday">Friday</option>
-						<option value="Saturday">Saturday</option>
-					</select>
+				<div className="container pick-day">
+					<div className="select-wrapper">
+						<h5>set schedule</h5>
+					</div>
+					<input type="date" name="" id="" onChange={handleDate}/>
 				</div>
 				<div className="container">
 					<select
