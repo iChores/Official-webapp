@@ -10,13 +10,29 @@ function HomeCookingForm({
 	setHomekeeperShow,
 	homekeeperShow,
 	chooseSetShow,
+	setDetails
 }) {
+	// prices
 	const [weekOnePrice, setWeekOnePrice] = useState([0]);
 	const [weekTwoPrice, setWeekTwoPrice] = useState([0]);
 	const [weekThirdPrice, setWeekThirdPrice] = useState([0]);
 	const [weekFourthPrice, setWeekFourthPrice] = useState([0]);
+
+	// schedules
+
+	const [weekOneSchedule, setWeekOneSchedule] = useState([]);
+	const [weekTwoSchedule, setWeekTwoSchedule] = useState([]);
+	const [weekThirdSchedule, setWeekThirdSchedule] = useState([]);
+	const [weekFourthSchedule, setWeekFourthSchedule] = useState([]);
+
+
+
+	const [people, setPeople] = useState(0);
+	const[err, setErr] = useState(false);
 	const [dateLog, setDateLog] = useState([]);
+	const [preference, setPrefernce] = useState([]);
 	const [total, setTotal] = useState("0.00");
+
 	function calculate() {
 		const firstWeek = weekOnePrice.reduce((a, b) => {
 			return a + b;
@@ -39,25 +55,54 @@ function HomeCookingForm({
 		chooseSetShow(true);
 	}
 	function Continue() {
+		if (people === 0 || preference.length === 0) {
+			setErr("Please complete the form*")
+		} else {
+			setErr(false);
+			const firstWeek = weekOnePrice.reduce((a, b) => {
+				return a + b;
+			});
+			const secondWeek = weekTwoPrice.reduce((a, b) => {
+				return a + b;
+			});
+			const thirdWeek = weekThirdPrice.reduce((a, b) => {
+				return a + b;
+			});
+			const fourthWeek = weekFourthPrice.reduce((a, b) => {
+				return a + b;
+			});
+			const add = (firstWeek + secondWeek + thirdWeek + fourthWeek)
+				.toFixed(2)
+				.replace(/\d(?=(\d{3})+\.)/g, "$&,");
 
-		const firstWeek = weekOnePrice.reduce((a, b) => {
-			return a + b;
-		});
-		const secondWeek = weekTwoPrice.reduce((a, b) => {
-			return a + b;
-		});
-		const thirdWeek = weekThirdPrice.reduce((a, b) => {
-			return a + b;
-		});
-		const fourthWeek = weekFourthPrice.reduce((a, b) => {
-			return a + b;
-		});
-		const add = (firstWeek + secondWeek + thirdWeek + fourthWeek)
-			.toFixed(2)
-			.replace(/\d(?=(\d{3})+\.)/g, "$&,");
+			setTotalPrice(add);
+			setHomekeeperShow(true);
+			setDetails([
+				{
+					total: add,
 
-		setTotalPrice(add);
-		setHomekeeperShow(true);
+				}
+
+			])
+		}
+	}
+
+	function HandlePrefernce(e) {
+		const checked = e.target.checked;
+		const pref = e.target.value;
+		if (checked) {
+			console.log("cheecked");
+			setPrefernce([...preference, pref]);
+		} else {
+			console.log("not checked");
+
+			const removedElement = preference.filter((ele) => {
+				return ele !== pref;
+			});
+			setPrefernce([...removedElement]);
+		}
+
+		console.log(preference);
 	}
 
 	return (
@@ -75,33 +120,48 @@ function HomeCookingForm({
 					<img src={Pan} alt="" />
 					<h2>Home cooking</h2>
 				</div>
+				<h3 className="err">{err ? err : ""}</h3>
 				<h3 className="size">Table size</h3>
 				<input
 					type="number"
 					placeholder="Number of people to feed"
 					className="number"
+					onChange={(e) => {
+						setPeople(e.target.value);
+					}}
 				/>
 				<h3 className="service-prefernce-heading"> Service preferences</h3>
 				<div className="prefernce-container">
-					<input type="checkbox" name="" />
+					<input
+						type="checkbox"
+						name=""
+						value="Diabetic"
+						onChange={HandlePrefernce}
+					/>
 					<h4>Diabetic</h4>
 				</div>
 				<div className="prefernce-container">
-					<input type="checkbox" name="" />
+					<input
+						type="checkbox"
+						name=""
+						value="vegetarian"
+						onChange={HandlePrefernce}
+					/>
 					<h4>Vegetarian </h4>
 				</div>
 				<div className="prefernce-container">
-					<input type="checkbox" name="" />
+					<input
+						type="checkbox"
+						name=""
+						value="Convalescent"
+						onChange={HandlePrefernce}
+					/>
 					<h4>Convalescent </h4>
 				</div>
 				<h3 className="service-day-heading">Customise service days</h3>
 				<p>
 					The day and time chosen iterates over the course of the subscription
 				</p>
-				<div className="start-date-wrapper">
-					<h3 className="start-date-heading">Select start date</h3>
-					<input type="date" name="Date" id="date" />
-				</div>
 				<SetSchedule
 					Prices={weekOnePrice}
 					setPrice={setWeekOnePrice}
@@ -109,6 +169,8 @@ function HomeCookingForm({
 					unitPrice={1400}
 					dateLog={dateLog}
 					setDateLog={setDateLog}
+					schedule={weekOneSchedule}
+					SetSchedule
 				/>
 				<SetSchedule
 					Prices={weekTwoPrice}

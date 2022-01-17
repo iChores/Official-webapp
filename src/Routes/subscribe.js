@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ChooseService from "../Components/ChooseService";
+import Form from "../Components/Form";
 import HomeCleaningForm from "../Components/HomeCleaningForm";
 import HomeCookingForm from "../Components/HomeCookingForm";
 import JointForm from "../Components/JointForms";
@@ -13,6 +14,7 @@ function Subscribe({user}) {
 	const [totalPrice, setTotalPrice] = useState("0.00")
 	const [homekeeperShow, setHomekeeperShow] = useState(false);
 	const [subscriptionType, setSubscriptionType] = useState("");
+	const [details, setDetails] = useState([])
 
 	return (
 		<>
@@ -24,38 +26,22 @@ function Subscribe({user}) {
 				setBoth={setBoth}
 				both={both}
 				user={user}
+				details={details}
+				setDetails={setDetails}
 				chooseShow={chooseShow}
 				chooseSetShow={chooseSetShow}
 				subscriptionTyper={subscriptionType}
 				setSubscriptionType={setSubscriptionType}
 			/>
-			{subscriptionType === "home cooking" && (
-				<HomeCookingForm
-					chooseShow={chooseShow}
-					chooseSetShow={chooseSetShow}
-					homekeeperShow={homekeeperShow}
-					setHomekeeperShow={setHomekeeperShow}
-					setTotalPrice={setTotalPrice}
-				/>
-			)}
-			{subscriptionType === "home cleaning" && (
-				<HomeCleaningForm
-					chooseShow={chooseShow}
-					chooseSetShow={chooseSetShow}
-					homekeeperShow={homekeeperShow}
-					setHomekeeperShow={setHomekeeperShow}
-					setTotalPrice={setTotalPrice}
-				/>
-			)}
-			{subscriptionType === "both" && (
-				<JointForm
-					chooseShow={chooseShow}
-					chooseSetShow={chooseSetShow}
-					homekeeperShow={homekeeperShow}
-					setHomekeeperShow={setHomekeeperShow}
-					setTotalPrice={setTotalPrice}
-				/>
-			)}
+			<Form
+				chooseShow={chooseShow}
+				chooseSetShow={chooseSetShow}
+				homekeeperShow={homekeeperShow}
+				setHomekeeperShow={setHomekeeperShow}
+				setTotalPrice={setTotalPrice}
+				subscriptionType={subscriptionType}
+				setDetails={setDetails}
+			/>
 			<SelectHomeKeeper
 				homekeeperShow={homekeeperShow}
 				totalPrice={totalPrice}

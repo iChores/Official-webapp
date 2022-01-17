@@ -5,6 +5,12 @@ const CookingFormWrapper = styled.div`
 	justify-content: center;
 	align-items: center;
 	.form-wrapper {
+		.err {
+			color: red;
+			font-size: 16px;
+			margin-top:30px;
+			align-self:center;
+		}
 		padding: 45px;
 		box-shadow: 0 0 30px #dbdbdb;
 		display: flex;
@@ -79,8 +85,8 @@ const CookingFormWrapper = styled.div`
 			display: flex;
 			align-items: center;
 			margin-top: 10px;
-			.pick-day{
-				margin-top:-10px;
+			.pick-day {
+				margin-top: -10px;
 			}
 			.container {
 				margin-left: 30px;
@@ -134,7 +140,7 @@ const CookingFormWrapper = styled.div`
 				}
 			}
 		}
-		.start-date-wrapper{
+		.start-date-wrapper {
 			margin: 10px 0;
 		}
 	}
