@@ -1,9 +1,6 @@
 import { useState } from "react";
 import ChooseService from "../Components/ChooseService";
 import Form from "../Components/Form";
-import HomeCleaningForm from "../Components/HomeCleaningForm";
-import HomeCookingForm from "../Components/HomeCookingForm";
-import JointForm from "../Components/JointForms";
 import SelectHomeKeeper from "../Components/SelectHomekeeper";
 
 function Subscribe({user}) {
@@ -33,6 +30,7 @@ function Subscribe({user}) {
 				subscriptionTyper={subscriptionType}
 				setSubscriptionType={setSubscriptionType}
 			/>
+			{/* work on this component and make responsive */}
 			<Form
 				chooseShow={chooseShow}
 				chooseSetShow={chooseSetShow}
@@ -42,6 +40,7 @@ function Subscribe({user}) {
 				subscriptionType={subscriptionType}
 				setDetails={setDetails}
 			/>
+			{/* Component ends here */}
 			<SelectHomeKeeper
 				homekeeperShow={homekeeperShow}
 				totalPrice={totalPrice}
