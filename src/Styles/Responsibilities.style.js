@@ -5,14 +5,34 @@ const ResponsibilitiesWrapper = styled.div`
 	flex-direction: column;
 	align-items: center;
 	width: 100%;
-	background: green;
 	.main-heading {
-		font-size: 26px;
+		font-size: 24px;
 	}
 	.res-container {
+		display: flex;
+		flex-direction: column;
+		justify-items: center;
+		align-items: center;
 		width: 100%;
-		height: 50px;
-		background: grey;
+	}
+	.button-container {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 20px;
+		cursor: pointer;
+		.arrow {
+			cursor: pointer;
+			padding: 15px 10px;
+			border: 1.5px solid black;
+			background: transparent;
+			img {
+				width: 30px;
+			}
+		}
+		p {
+			font-weight: bold;
+		}
 	}
 `;
 
