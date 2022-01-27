@@ -1,6 +1,15 @@
+import LeftBar from "../Components/LeftBar";
+import ScheduleWrapper from "../Styles/ScheduleList.style";
+
 function ScheduleList() {
     return (
-        <h1>welcome to list</h1>
+        <ScheduleWrapper>
+            <div className="container">
+                <LeftBar/>
+            </div>
+            <div className="container"></div>
+            <div className="container"></div>
+        </ScheduleWrapper>
     )
 }
 

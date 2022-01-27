@@ -3,7 +3,7 @@ import Subscribe from "./subscribe";
 
 function Dashboard({user}) {
 	return (<>
-		<Subscribe user={user} />
+		{/* <Subscribe user={user} /> */}
 		<ScheduleList/>
 	</>);
 }
