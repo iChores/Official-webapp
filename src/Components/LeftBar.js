@@ -1,4 +1,4 @@
-import LeftWrapper from "../Styles/LeftBar";
+import LeftWrapper from "../Styles/LeftBar.style";
 import ScheduleIcon from "../Assets/ScheduleIcon.png";
 import ComplainIcon from "../Assets/ComplainIcon.png";
 import SubscriptionIcon from "../Assets/SubscriptionIcon.png";
