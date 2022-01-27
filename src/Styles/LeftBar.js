@@ -1,18 +1,19 @@
 import styled from "styled-components";
+import { primaryColor } from "../Assets/Utility";
 
 const LeftWrapper = styled.div`
 	display: flex;
 	flex-direction: column;
 	align-items: center;
 	.leftwrapper-heading {
-		font-size: 28px;
+		font-size: 24px;
 	}
 	.tab-wrapper {
 		display: column;
 		flex-direction: column;
 		align-items: center;
 		margin-top: 30px;
-        width: 100%;
+		width: 100%;
 		.tab-container {
 			display: flex;
 			justify-content: center;
@@ -20,6 +21,7 @@ const LeftWrapper = styled.div`
 			margin-top: 20px;
 			.img-container {
 				width: 20%;
+				pointer-events: none;
 				img {
 					width: 35px;
 				}
@@ -27,7 +29,8 @@ const LeftWrapper = styled.div`
 			h2 {
 				/* margin-left: 10px; */
 				font-size: 20px;
-                width: 50%;
+				width: 50%;
+				pointer-events: none;
 			}
 		}
 	}
