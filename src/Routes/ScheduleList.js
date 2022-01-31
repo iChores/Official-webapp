@@ -1,7 +1,9 @@
 import { useState } from "react/cjs/react.development";
+import Complain from "../Components/Complain";
 import HouseKeeperDetails from "../Components/HouseKeeperDetails";
 import LeftBar from "../Components/LeftBar";
 import Responsibilities from "../Components/Responsibilities";
+import Status from "../Components/Status";
 import ScheduleWrapper from "../Styles/ScheduleList.style";
 
 function ScheduleList() {
@@ -12,7 +14,9 @@ function ScheduleList() {
 				<LeftBar activeTab={activeTab} setActiveTab={setActiveTab} />
 			</div>
 			<div className="container">
-				<Responsibilities />
+				{activeTab === "Schedules" && <Responsibilities />}
+				{activeTab === "Complain" && <Complain />}
+				{activeTab === "status" && <Status/>}
 			</div>
 			<div className="container">
 				<HouseKeeperDetails
