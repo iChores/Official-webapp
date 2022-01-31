@@ -9,7 +9,7 @@ function Status() {
 				<p>Both</p>
 			</div>
 			<div className="sub-content">
-				<h6>ACtive days remaining</h6>
+				<h6>Active days remaining</h6>
 				<p>27 days</p>
 			</div>
 			<div className="sub-content">

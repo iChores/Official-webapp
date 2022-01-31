@@ -3,6 +3,7 @@ import Complain from "../Components/Complain";
 import HouseKeeperDetails from "../Components/HouseKeeperDetails";
 import LeftBar from "../Components/LeftBar";
 import Responsibilities from "../Components/Responsibilities";
+import Setting from "../Components/Settings";
 import Status from "../Components/Status";
 import ScheduleWrapper from "../Styles/ScheduleList.style";
 
@@ -17,6 +18,7 @@ function ScheduleList() {
 				{activeTab === "Schedules" && <Responsibilities />}
 				{activeTab === "Complain" && <Complain />}
 				{activeTab === "status" && <Status/>}
+				{activeTab === "Settings" && <Setting />}
 			</div>
 			<div className="container">
 				<HouseKeeperDetails
