@@ -7,10 +7,10 @@ function Setting() {
 	return (
 		<>
 			{settingsToggle === "off" && (
-				<SettingsItems setSettingsToggle={settingsToggle} />
+				<SettingsItems setSettingsToggle={setSettingsToggle} />
 			)}
 			{settingsToggle === "on" && (
-				<EditDetailsForm setSettingsToggle={settingsToggle} />
+				<EditDetailsForm setSettingsToggle={setSettingsToggle} />
 			)}
 		</>
 	);

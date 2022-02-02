@@ -1,7 +1,7 @@
 import { PrimaryButton } from "../Styles/Buttons.style";
 import { SettingItemWrapper } from "../Styles/Settings.style";
 
-function SettingsItems() {
+function SettingsItems({ setSettingsToggle }) {
 	return (
 		<SettingItemWrapper>
 			<h3>Customer information</h3>
@@ -30,7 +30,13 @@ function SettingsItems() {
 				<p>Eti-osa Lg</p>
 			</div>
 			<PrimaryButton>
-				<button>Edit details</button>
+				<button
+					onClick={() => {
+						setSettingsToggle("on");
+					}}
+				>
+					Edit details
+				</button>
 			</PrimaryButton>
 		</SettingItemWrapper>
 	);
