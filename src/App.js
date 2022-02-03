@@ -7,6 +7,7 @@ import Navbar from "./Components/Nav";
 import Login from "./Routes/Login";
 import { useState } from "react";
 import Dashboard from "./Routes/DashBoard";
+import Admin from "./Routes/Admin";
 
 function App() {
 	const [user, setUser] = useState(false)
@@ -29,6 +30,7 @@ function App() {
 						}
 					/>
 					<Route path="/dashboard" element={<Dashboard user={user} isLoggedIn={isLoggedIn}/>} />
+					<Route path="/admin/dashboard" element={<Admin/>} />
 				</Routes>
 			</div>
 		);
