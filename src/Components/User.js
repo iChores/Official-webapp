@@ -1,9 +1,26 @@
 import UserWrapper from "../Styles/User.style";
 
-function User({ firstName, lastName,setPopUp, Status, userType, Avatar }) {
-    function handleClick() {
-        setPopUp(true)
-    }
+function User({
+	firstName,
+	lastName,
+	setPopUp,
+	Status,
+	setPopUpDetails,
+	userType,
+	Avatar,
+}) {
+	function handleClick() {
+		setPopUp(true);
+		setPopUpDetails([
+			{
+				firstName,
+				lastName,
+				Status,
+				userType,
+				Avatar,
+			},
+		]);
+	}
 	return (
 		<UserWrapper onClick={handleClick}>
 			<h3 className="name">
@@ -19,6 +36,5 @@ function User({ firstName, lastName,setPopUp, Status, userType, Avatar }) {
 		</UserWrapper>
 	);
 }
-
 
 export default User;

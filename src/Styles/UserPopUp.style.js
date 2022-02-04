@@ -2,14 +2,10 @@ import styled from "styled-components";
 
 const UserPopUpWrapper = styled.div`
 	padding: 30px 20px;
-	width: 45%;
+	width: 40%;
 	align-self: center;
 	background: white;
-	border: 2px solid black;
-	position: absolute;
-	top: 50%;
-	transform: translate(0, -50%);
-	margin-top: 15%;
+	border: 1px solid black;
 	display: flex;
 	flex-direction: column;
 	h1 {
@@ -23,6 +19,11 @@ const UserPopUpWrapper = styled.div`
         width:100px;
         height:100px;
         border: 2px solid black;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
     }
     button{
         margin-top: 20px;
