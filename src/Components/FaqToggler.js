@@ -5,7 +5,6 @@ function FaqToggler({ title, text }) {
     const [ faqActive, setFaqActive ] = useState(false)
 
     function toggleFaq() {
-        console.log("clicked");
         if (faqActive) {
         setFaqActive(false);
         } else {

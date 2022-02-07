@@ -30,7 +30,6 @@ function User({
 				className="status"
 				style={{ color: Status === "Active" ? "#03B952" : "lightgray" }}
 			>
-				{" "}
 				{Status}
 			</h3>
 		</UserWrapper>

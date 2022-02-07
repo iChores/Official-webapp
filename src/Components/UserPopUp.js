@@ -21,6 +21,10 @@ function UserPopUp({ popUpDetails }) {
 				<input type="text" placeholder={popUpDetails[0].userType} />
 			</div>
 			<div className="input-container">
+				<h3>Location</h3>
+				<input type="text" placeholder="Ikorodu" />
+			</div>
+			<div className="input-container">
 				<h3>Status</h3>
 				<div className="status-toggle">
 					<div className="toggle-bar"></div>

@@ -17,6 +17,18 @@ function AdminListToggler({ adminToggle, setAdminToggle }) {
 			</button>
 			<button
 				onClick={() => {
+					setAdminToggle("Client");
+				}}
+				className="toggle-button"
+				style={{
+					color: adminToggle === "Client" ? "black" : "white",
+					background: adminToggle === "Client" ? "#3DEAA3" : "black",
+				}}
+			>
+				Client details
+			</button>
+			<button
+				onClick={() => {
 					setAdminToggle("Create");
 				}}
 				className="toggle-button"
