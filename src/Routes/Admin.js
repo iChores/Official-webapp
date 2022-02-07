@@ -5,6 +5,7 @@ import AdminWrapper from "../Styles/Admin.style";
 import Avatar from "../Assets/HomeKeeperImg.jpg";
 import UserPopUp from "../Components/UserPopUp";
 import ClientList from "../Components/ClientList";
+import CreateHomeKeeper from "../Components/CreateHomeKeeper";
 
 function Admin() {
 	const [adminToggle, setAdminToggle] = useState("List");
@@ -81,6 +82,7 @@ function Admin() {
 				</div>
 			)}
 			{adminToggle === "Client" && <ClientList/>}
+			{adminToggle === "Create" && <CreateHomeKeeper/>}
 		</AdminWrapper>
 	);
 }
