@@ -52,7 +52,7 @@ function Client() {
 					<p>20-4-2022</p>
 				</div>
 				<div className="more-content">
-					<h3>Home Keeper</h3>
+					<h3> Current homeKeeper</h3>
 					<p>Kingsley Argwu</p>
 					{showKeeperForm && (
 						<div className="add-wrapper">
